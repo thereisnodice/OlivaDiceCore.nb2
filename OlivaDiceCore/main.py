@@ -14,8 +14,10 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 '''
 
-import OlivOS
-import OlivaDiceCore
+import OlivaDiceCore.msgReply
+import OlivaDiceCore.ordinaryInviteManager
+import OlivaDiceCore.pulse
+
 
 class Event(object):
     def init(plugin_event, Proc):

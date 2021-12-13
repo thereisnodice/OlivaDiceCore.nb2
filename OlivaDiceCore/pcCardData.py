@@ -14,8 +14,6 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 '''
 
-import OlivaDiceCore
-
 dictPcCardTemplateDefault = {
     'default': {
         'mainDice': '1D100',

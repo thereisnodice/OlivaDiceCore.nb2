@@ -14,11 +14,12 @@
 @Desc      :   None
 '''
 
-from enum import Enum
 import random
+from enum import Enum
+
 import requests as req
 
-import OlivaDiceCore
+import OlivaDiceCore.data
 
 #random_default_mode = 'default'
 random_default_mode = 'random_org'

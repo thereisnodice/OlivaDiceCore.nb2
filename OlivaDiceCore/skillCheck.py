@@ -14,9 +14,10 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 '''
 
-import OlivaDiceCore
-
 from enum import Enum
+
+import OlivaDiceCore.pcCardData
+
 
 class resultType(Enum):
     SKILLCHECK_NOPE = 0

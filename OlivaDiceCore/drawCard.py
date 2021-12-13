@@ -14,11 +14,14 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 '''
 
-import OlivOS
-import OlivaDiceCore
-
-import os
 import json
+import os
+
+import OlivaDiceCore.data
+import OlivaDiceCore.drawCardData
+import OlivaDiceCore.msgCustom
+import OlivaDiceCore.onedice
+
 
 def initDeck(bot_info_dict):
     for bot_info_dict_this in bot_info_dict:

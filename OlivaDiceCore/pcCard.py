@@ -14,12 +14,12 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 '''
 
-import OlivOS
-import OlivaDiceCore
-
 import hashlib
 import json
 import os
+
+import OlivaDiceCore.data
+import OlivaDiceCore.pcCardData
 
 dictPcCardData = {
     'unity' : {}

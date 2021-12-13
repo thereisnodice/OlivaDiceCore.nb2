@@ -14,11 +14,10 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 '''
 
-import OlivOS
-import OlivaDiceCore
-
 import json
 import os
+
+import OlivaDiceCore.data
 
 dictConsoleSwitchTemplate = {
     'default' : {

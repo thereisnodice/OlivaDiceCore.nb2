@@ -15,10 +15,11 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 '''
 
 import time
+
 import requests as req
 
-import OlivOS
-import OlivaDiceCore
+import OlivaDiceCore.console
+import OlivaDiceCore.data
 
 dictPulseTs = {}
 

@@ -14,9 +14,9 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 '''
 
-import sys
-import platform
 import os
+import platform
+import sys
 import uuid
 
 OlivaDiceCore_ver = '3.0.8'
@@ -27,7 +27,7 @@ bot_info_basic = 'OlivaDice By lunzhiPenxil Ver.' + str(OlivaDiceCore_ver)
 
 bot_info_basic_short = 'OlivaDice Ver.' + str(OlivaDiceCore_ver)
 
-bot_info = bot_info_basic + ' [Python ' + str(platform.python_version()) + ' For OlivOS]'
+bot_info = bot_info_basic + ' [Python ' + str(platform.python_version()) + ' For NoneBot2]'
 
 bot_version_short = 'OlivaDice ' + str(OlivaDiceCore_ver)
 
@@ -43,4 +43,4 @@ bot_content = {
     'masterKey': str(uuid.uuid4())
 }
 
-dataDirRoot = './plugin/data/OlivaDice'
+dataDirRoot = './data/OlivaDice'

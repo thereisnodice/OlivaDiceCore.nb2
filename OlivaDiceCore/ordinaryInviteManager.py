@@ -14,8 +14,11 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 '''
 
-import OlivOS
-import OlivaDiceCore
+import OlivaDiceCore.console
+import OlivaDiceCore.msgCustom
+import OlivaDiceCore.msgReply
+import OlivaDiceCore.userConfig
+
 
 def unity_group_invite_request(plugin_event, Proc):
     flag_enable_default = 1

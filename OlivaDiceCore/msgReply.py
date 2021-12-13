@@ -14,11 +14,21 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 '''
 
-import OlivOS
-import OlivaDiceCore
-
 import time
 import uuid
+
+import OlivaDiceCore.console
+import OlivaDiceCore.data
+import OlivaDiceCore.drawCard
+import OlivaDiceCore.helpDoc
+import OlivaDiceCore.msgCustom
+import OlivaDiceCore.msgCustomManager
+import OlivaDiceCore.onedice
+import OlivaDiceCore.ordinaryInviteManager
+import OlivaDiceCore.pcCard
+import OlivaDiceCore.skillCheck
+import OlivaDiceCore.userConfig
+
 
 def logProc(Proc, level, message, segment):
     Proc.log(
