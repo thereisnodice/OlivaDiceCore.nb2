@@ -32,9 +32,9 @@ import OlivaDiceCore.userConfig
 
 def logProc(Proc, level, message, segment):
     Proc.log(
-        log_level = level,
-        log_message = message,
-        log_segment = segment
+        # level, 
+        message,
+        # log_segment = segment,
     )
 
 def unity_init(plugin_event, Proc):
@@ -108,11 +108,13 @@ def unity_reply(plugin_event, Proc):
     dictGValue = OlivaDiceCore.msgCustom.dictGValue
     dictTValue.update(dictGValue)
 
-    tmp_at_str = OlivOS.messageAPI.PARA.at(plugin_event.base_info['self_id']).CQ()
+    # tmp_at_str = OlivOS.messageAPI.PARA.at(plugin_event.base_info['self_id']).CQ()
+    tmp_at_str = ""
     tmp_at_str_sub = None
     if 'sub_self_id' in plugin_event.data.extend:
         if plugin_event.data.extend['sub_self_id'] != None:
-            tmp_at_str_sub = OlivOS.messageAPI.PARA.at(plugin_event.data.extend['sub_self_id']).CQ()
+            # tmp_at_str_sub = OlivOS.messageAPI.PARA.at(plugin_event.data.extend['sub_self_id']).CQ()
+            tmp_at_str_sub = ""
     tmp_command_str_1 = '.'
     tmp_command_str_2 = '。'
     tmp_command_str_3 = '/'
