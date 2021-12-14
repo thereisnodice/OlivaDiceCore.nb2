@@ -16,6 +16,7 @@ nonebot-adapter-cqhttp = "^2.0.0-alpha.16"
 [tool.poetry.dev-dependencies]
 nb-cli = "^0.5.1"
 black = "^21.12b0"
+isort = "^5.10.1"
 
 
 [build-system]
