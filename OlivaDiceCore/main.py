@@ -14,7 +14,6 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 """
 
-import asyncio
 from typing import Optional, Tuple
 
 from nonebot import get_bots, get_driver
@@ -28,49 +27,19 @@ from nonebot.adapters.cqhttp.event import (
     PokeNotifyEvent,
     PrivateMessageEvent,
 )
-from nonebot.log import logger
 from nonebot.plugin import on
 
 import OlivaDiceCore.msgReply
 import OlivaDiceCore.ordinaryInviteManager
 import OlivaDiceCore.pulse
-
-
-class PluginEvent:
-    pass
-
-
-class Proc:
-    pass
-
-
-class Objcet:
-    pass
+from OlivaDiceCore.middleware import PluginEvent, Proc
 
 
 async def pre_process(
     bot: Optional[Bot] = None, event: Optional[Event] = None
 ) -> Tuple[PluginEvent, Proc]:
-    plugin_event = PluginEvent()
-    plugin_event.platform = {"platform": "cqhttp"}
+    plugin_event = PluginEvent(bot, event)
     proc = Proc()
-    if bot:
-        plugin_event.bot_info = Objcet()
-        plugin_event.bot_info.hash = bot.self_id
-    if event:
-
-        def reply(message: str):
-            asyncio.get_event_loop().create_task(bot.send(event, message))
-
-        plugin_event.reply = reply
-        plugin_event.plugin_info = {"func_type": event.sub_type}
-        plugin_event.data = Objcet()
-        plugin_event.data.message = str(event.get_message())
-        plugin_event.data.user_id = event.get_user_id()
-        plugin_event.data.sender = {"nickname": event.sender.nickname}
-        plugin_event.data.extend = {"sub_self_id": None}
-    proc.Proc_data = {"bot_info_dict": get_bots()}
-    proc.log = logger.info
 
     return plugin_event, proc
 
