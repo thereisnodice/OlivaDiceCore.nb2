@@ -14,8 +14,9 @@ _  / / /_  /  __  / __ | / /__  /| |_  / / /__  / _  /    __  __/
 @Desc      :   None
 '''
 
-import time
 import uuid
+
+from nonebot.adapters.cqhttp.message import MessageSegment
 
 import OlivaDiceCore.console
 import OlivaDiceCore.data
@@ -108,13 +109,11 @@ def unity_reply(plugin_event, Proc):
     dictGValue = OlivaDiceCore.msgCustom.dictGValue
     dictTValue.update(dictGValue)
 
-    # tmp_at_str = OlivOS.messageAPI.PARA.at(plugin_event.base_info['self_id']).CQ()
-    tmp_at_str = ""
+    tmp_at_str = str(MessageSegment.at(plugin_event.base_info['self_id']))
     tmp_at_str_sub = None
     if 'sub_self_id' in plugin_event.data.extend:
         if plugin_event.data.extend['sub_self_id'] != None:
-            # tmp_at_str_sub = OlivOS.messageAPI.PARA.at(plugin_event.data.extend['sub_self_id']).CQ()
-            tmp_at_str_sub = ""
+            tmp_at_str_sub = str(MessageSegment.at(plugin_event.data.extend['sub_self_id']))
     tmp_command_str_1 = '.'
     tmp_command_str_2 = '。'
     tmp_command_str_3 = '/'
@@ -141,7 +140,9 @@ def unity_reply(plugin_event, Proc):
         if isMatchWordStart(tmp_reast_str, tmp_at_str_sub):
             tmp_reast_str = getMatchWordStartRight(tmp_reast_str, tmp_at_str_sub)
             tmp_reast_str = skipSpaceStart(tmp_reast_str)
-            flag_force_reply = True
+            flag_force_reply = True 
+    if getattr(plugin_event.data, 'to_me', False):
+        flag_force_reply = True
     if isMatchWordStart(tmp_reast_str, tmp_command_str_1):
         tmp_reast_str = getMatchWordStartRight(tmp_reast_str, tmp_command_str_1)
         flag_is_command = True
@@ -246,7 +247,7 @@ def unity_reply(plugin_event, Proc):
                         sendMsgByEvent(plugin_event, tmp_reply_str, tmp_group_id, 'group')
                         tmp_reply_str = dictStrCustom['strBotExitRemoteShow'].format(**dictTValue)
                         replyMsg(plugin_event, tmp_reply_str)
-                        time.sleep(1)
+                        plugin_event.sleep(1)
                         plugin_event.set_group_leave(tmp_group_id)
                 elif isMatchWordStart(tmp_reast_str, 'accept'):
                     tmp_reast_str = getMatchWordStartRight(tmp_reast_str, 'accept')
@@ -256,9 +257,9 @@ def unity_reply(plugin_event, Proc):
                         tmp_flag = tmp_reast_str
                         dictTValue['tInvateFlag'] = str(tmp_flag)
                         tmp_reply_str = dictStrCustom['strBotAddGroupRemoteAcceptShow'].format(**dictTValue)
-                        replyMsg(plugin_event, tmp_reply_str)
-                        time.sleep(1)
                         plugin_event.set_group_add_request(tmp_flag, 'invite', True, '')
+                        plugin_event.sleep(1)
+                        replyMsg(plugin_event, tmp_reply_str)
                 elif isMatchWordStart(tmp_reast_str, 'host'):
                     tmp_reast_str = getMatchWordStartRight(tmp_reast_str, 'host')
                     tmp_reast_str = skipSpaceStart(tmp_reast_str)
@@ -556,7 +557,7 @@ def unity_reply(plugin_event, Proc):
                     if (flag_is_from_group_have_admin and flag_is_from_group_admin) or flag_is_from_master:
                         tmp_reply_str = dictStrCustom['strBotExit'].format(**dictTValue)
                         replyMsg(plugin_event, tmp_reply_str)
-                        time.sleep(1)
+                        plugin_event.sleep(1)
                         plugin_event.set_group_leave(plugin_event.data.group_id)
             elif isMatchWordStart(tmp_reast_str, 'summary') and flag_is_from_master:
                 tmp_reply_str = ''
