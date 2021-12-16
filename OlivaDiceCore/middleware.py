@@ -47,7 +47,7 @@ class PluginEvent:
         # self.get_Event_on_Plugin()
 
     def get_Event_from_SDK(self, event: Event):
-        self.data = event
+        self.data = event.copy()
         self.base_info["time"] = event.time
         self.base_info["self_id"] = event.self_id
         self.base_info["type"] = event.post_type
@@ -79,8 +79,7 @@ class PluginEvent:
             self.plugin_info["func_type"] = func_type_map[type(event)]
         if isinstance(event, MessageEvent):
             self.data.message = str(event.message)
-            if not isinstance(self.data.sender, dict):
-                self.data.sender = event.sender.dict()
+            self.data.sender = event.sender.dict()
             self.data.extend = {}
             # self.data.message_sdk = OlivOS.messageAPI.Message_templet(
             #     "old_string", str(event.message)
