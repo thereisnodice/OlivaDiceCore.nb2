@@ -34,6 +34,12 @@ import OlivaDiceCore.ordinaryInviteManager
 import OlivaDiceCore.pulse
 from OlivaDiceCore.middleware import PluginEvent, Proc
 
+driver = get_driver()
+message_matcher = on("message")
+notice_mathcer = on("notice")
+request_mathcer = on("request")
+meta_mathcer = on("meta")
+
 
 async def pre_process(
     bot: Optional[Bot] = None, event: Optional[Event] = None
@@ -44,49 +50,49 @@ async def pre_process(
     return plugin_event, proc
 
 
-@get_driver().on_bot_connect
+@driver.on_bot_connect
 async def init(bot: Bot):
     plugin_event, proc = await pre_process()
     OlivaDiceCore.msgReply.unity_init(plugin_event, proc)
 
 
-@on("message").handle()
+@message_matcher.handle()
 async def private_message(bot: Bot, event: PrivateMessageEvent):
     plugin_event, proc = await pre_process(bot, event)
     OlivaDiceCore.msgReply.unity_reply(plugin_event, proc)
 
 
-@on("message").handle()
+@message_matcher.handle()
 async def group_message(bot: Bot, event: GroupMessageEvent):
     plugin_event, proc = await pre_process(bot, event)
     OlivaDiceCore.msgReply.unity_reply(plugin_event, proc)
 
 
-@on("notice").handle()
+@notice_mathcer.handle()
 async def poke(bot: Bot, event: PokeNotifyEvent):
     plugin_event, proc = await pre_process(bot, event)
     OlivaDiceCore.msgReply.poke_reply(plugin_event, proc)
 
 
-@on("request").handle()
+@request_mathcer.handle()
 async def friend_add_request(bot: Bot, event: FriendRequestEvent):
     plugin_event, proc = await pre_process(bot, event)
     OlivaDiceCore.ordinaryInviteManager.unity_friend_add_request(plugin_event, proc)
 
 
-@on("request").handle()
+@request_mathcer.handle()
 async def group_invite_reques(bot: Bot, event: GroupRequestEvent):
     plugin_event, proc = await pre_process(bot, event)
     OlivaDiceCore.ordinaryInviteManager.unity_group_invite_request(plugin_event, proc)
 
 
-@on("meta").handle()
+@meta_mathcer.handle()
 async def heartbeat(bot: Bot, event: MetaEvent):
     plugin_event, proc = await pre_process(bot, event)
     OlivaDiceCore.pulse.unity_heartbeat(plugin_event, proc)
 
 
-@get_driver().on_shutdown
+@driver.on_shutdown
 async def save():
     plugin_event, proc = await pre_process()
     OlivaDiceCore.msgReply.unity_save(plugin_event, proc)
